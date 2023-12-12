@@ -17,15 +17,11 @@ jobs:
         creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
     
     - name: Validation step
-      uses: azure/CLI@v1
-      with:
-        azcliversion: latest
-        scriptLocation: ./pwsh_scripts/validate_terraform
+      run: ./pwsh_scripts/validate_terraform.ps1
+      shell: pwsh
     
-    - name: Validation step
-      uses: azure/CLI@v1
-      with:
-        azcliversion: latest
-        inlineScript: az logout
+    - name: Logout
+      run: az logout
+      shell: pwsh
 
 

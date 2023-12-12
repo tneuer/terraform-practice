@@ -1,1 +1,26 @@
-# terraform-practice
+# README
+
+## Commands
+
+### Checks & Apply
+
+terraform.exe init -backend-config="./configs/config_dev.azure.tfbackend";
+terraform.exe fmt -recursive;
+terraform.exe validate;
+terraform.exe plan -var-file="./variables/dev.tfvars";
+terraform.exe apply -var-file="./variables/dev.tfvars" -auto-approve;
+
+### Show & List
+
+terraform state list
+terraform state show azurerm_resource_group.example
+
+## Description
+
+- main.tf: Entry point for the terraform deployment.
+- terraform.tfvars: Global variables. Used in every environment.
+- variables.tf: Variable declarations on a global level.
+- initiate_remote_state.azcli: Creates storage account for remote states.
+- variables/*: Environment specific variables.
+- configs/*: Environment specific configurations. Inclduing remote state server.
+- modules/*: Modules of the terraform main.tf file.

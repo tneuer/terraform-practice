@@ -11,13 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     
-    - uses: azure/login@v1
+    - name: Login
+      uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
     
-    - name: Azure CLI script
+    - name: Validation step
       uses: azure/CLI@v1
       with:
         azcliversion: latest
-        inlineScript: |
-          az account show
+        scriptLocation: ./pwsh_scripts/validate_terraform
+    
+    - name: Validation step
+      uses: azure/CLI@v1
+      with:
+        azcliversion: latest
+        inlineScript: az logout
+
+

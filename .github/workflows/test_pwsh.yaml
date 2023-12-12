@@ -17,6 +17,10 @@ jobs:
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
+
+    - name: Validate login
+      run: az account show
+      shell: pwsh
     
     - name: Validation step
       run: ./pwsh_scripts/validate_terraform.ps1

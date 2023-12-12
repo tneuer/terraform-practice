@@ -1,0 +1,40 @@
+name: Validate Terraform
+
+on:
+  push:
+    branches: [ "dev", "feature" ]
+  pull_request:
+    branches: [ "master", "dev" ]
+  workflow_dispatch:
+
+jobs:
+
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check out repo        
+      uses: actions/checkout@v4
+
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: '>=1.6.5'
+
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
+
+    - name: Validate login
+      run: az account show
+      shell: pwsh
+    
+    - name: Validation step
+      run: ./pwsh_scripts/validate_terraform.ps1
+      shell: pwsh
+    
+    - name: Azure logout
+      run: az logout
+      shell: pwsh
+
+

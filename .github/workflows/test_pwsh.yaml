@@ -13,7 +13,12 @@ jobs:
     - name: Check out repo        
       uses: actions/checkout@v4
 
-    - name: Login
+    - name: Setup Terraform
+      uses: hashicorp/setup-terraform@v2
+      with:
+        terraform_version: '>=3.0.0'
+
+    - name: Azure login
       uses: azure/login@v1
       with:
         creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
@@ -26,7 +31,7 @@ jobs:
       run: ./pwsh_scripts/validate_terraform.ps1
       shell: pwsh
     
-    - name: Logout
+    - name: Azure logout
       run: az logout
       shell: pwsh
 

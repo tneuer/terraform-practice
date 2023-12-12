@@ -24,3 +24,10 @@ terraform state show azurerm_resource_group.example
 - variables/*: Environment specific variables.
 - configs/*: Environment specific configurations. Inclduing remote state server.
 - modules/*: Modules of the terraform main.tf file.
+
+## Next steps
+
+- Import variables in PowerShell scripts
+- Find replacement for the --sdk-auth
+- Finish Terraform tutorial
+- Deploy networks & databricks environment using terraform

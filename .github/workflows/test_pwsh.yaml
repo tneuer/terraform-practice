@@ -28,6 +28,15 @@ jobs:
       shell: pwsh
     
     - name: Validation step
+      run: ./pwsh_scripts/setup_credentials.ps1
+      shell: pwsh
+
+    - name: Azure login
+      uses: azure/login@v1
+      with:
+        creds: ${{ secrets.AZURE_RG_CREDENTIALS }}
+    
+    - name: Validation step
       run: ./pwsh_scripts/validate_terraform.ps1
       shell: pwsh
     

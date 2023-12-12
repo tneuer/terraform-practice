@@ -1,4 +1,4 @@
-name: hello_world_pwsh
+name: Validate Terraform
 
 on:
   push:
@@ -11,7 +11,7 @@ jobs:
     steps:
       - name: Checkout the repo
         uses: actions/checkout@v4
-      - name: Run the power shell script
+      - name: Run the validation script
         run: |
-          ./test_file.ps1
+          ./pwsh_scripts/validate_terraform.ps1
         shell: pwsh

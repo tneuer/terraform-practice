@@ -10,7 +10,9 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-    
+    - name: Check out repo        
+      uses: actions/checkout@v4
+
     - name: Login
       uses: azure/login@v1
       with:

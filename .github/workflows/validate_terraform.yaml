@@ -2,9 +2,7 @@ name: Validate Terraform
 
 on:
   push:
-    branches: [ "dev", "feature" ]
-  pull_request:
-    branches: [ "master", "dev" ]
+    branches: [ "feature" ]
   workflow_dispatch:
 
 jobs:

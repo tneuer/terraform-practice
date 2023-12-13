@@ -36,6 +36,7 @@ jobs:
 
     - name: Init & Import
       run: ./pwsh_scripts/imports_terraform.ps1
+      continue-on-error: true
       shell: pwsh
     
     - name: Validation step

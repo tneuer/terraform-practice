@@ -9,7 +9,21 @@ locals {
 resource "azurerm_resource_group" "base_rg" {
   name     = "terraform-test-resource"
   location = var.location
-  tags     = local.tags
+}
+
+data "azurerm_client_config" "current" {}
+
+resource "azurerm_key_vault" "tfstatekv" {
+  name                = "tfstatekv"
+  resource_group_name = azurerm_resource_group.base_rg.name
+  location            = var.location
+  tenant_id           = data.azurerm_client_config.current.tenant_id
+  sku_name            = "standard"
+}
+
+data "azurerm_key_vault_secret" "linux_pwd" {
+  name         = "linux-pwd"
+  key_vault_id = azurerm_key_vault.tfstatekv.id
 }
 
 resource "azurerm_virtual_network" "base_vn" {
@@ -88,14 +102,11 @@ resource "azurerm_linux_virtual_machine" "linux_vm_test" {
   location            = azurerm_resource_group.base_rg.location
   size                = "Standard_B1s"
   admin_username      = "adminuser"
+  admin_password      = data.azurerm_key_vault_secret.linux_pwd.value
+  disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.nic_test.id,
   ]
-
-  admin_ssh_key {
-    username   = "adminuser"
-    public_key = file("~/.ssh/azure_key.pub")
-  }
 
   os_disk {
     caching              = "ReadWrite"

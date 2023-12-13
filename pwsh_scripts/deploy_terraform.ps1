@@ -1,7 +1,7 @@
+. .\pwsh_scripts\variables.ps1
+
 az login;
-$KEYVAULT_NAME='tfstatekv';
-$SECRET_NAME='tfstatekv';
-$env:ARM_ACCESS_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEYVAULT_NAME --query value -o tsv);
+$env:ARM_ACCESS_KEY=$(az keyvault secret show --name $TF_SECRET_NAME --vault-name $TF_KEYVAULT_NAME --query value -o tsv);
 
 terraform.exe init -backend-config="./configs/config_dev.azure.tfbackend";
 terraform.exe fmt -recursive;

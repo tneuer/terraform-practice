@@ -1,5 +1,12 @@
 # README
 
+## Requirements
+
+- PowerShell
+- Azure CLI
+- Terraform
+- Databricks CLI
+
 ## Commands
 
 ### Checks & Apply
@@ -24,6 +31,12 @@ terraform state show azurerm_resource_group.example
 - variables/*: Environment specific variables.
 - configs/*: Environment specific configurations. Inclduing remote state server.
 - modules/*: Modules of the terraform main.tf file.
+
+## Manual setup
+
+- Run PowerShell from root: .\pwsh_scripts\initialize_remote_state.ps1
+- Run PowerShell from root: .\pwsh_scripts\initialize_github_sp.ps1
+- Copy credentials returned from previous command to Github secret with name "AZURE_TERRAFORM_CREDENTIALS"
 
 ## Next steps
 

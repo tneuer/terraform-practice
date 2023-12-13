@@ -1,6 +1,5 @@
-$KEYVAULT_NAME='tfstatekv';
-$SECRET_NAME='tfstatekv';
-$env:ARM_ACCESS_KEY=$(az keyvault secret show --name $SECRET_NAME --vault-name $KEYVAULT_NAME --query value -o tsv);
+. .\pwsh_scripts\variables.ps1
+$env:ARM_ACCESS_KEY=$(az keyvault secret show --name $TF_SECRET_NAME --vault-name $TF_KEYVAULT_NAME --query value -o tsv);
 
 terraform init -backend-config="./configs/config_dev.azure.tfbackend";
 terraform fmt -recursive;

@@ -33,12 +33,18 @@ jobs:
     - name: Validate login
       run: az account show
       shell: pwsh
+
+    - name: Init & Import
+      run: ./pwsh_scripts/imports_terraform.ps1
+      shell: pwsh
     
     - name: Validation step
+      if: always()
       run: ./pwsh_scripts/validate_terraform.ps1
       shell: pwsh
     
     - name: Azure logout
+      if: always()
       run: az logout
       shell: pwsh
 

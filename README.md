@@ -40,6 +40,8 @@ terraform state show azurerm_resource_group.example
 
 ## Next steps
 
-- Finish Terraform tutorial
 - Make diagram
+- Create working import in Github pipeline
+- Make destroy script that doesn´t destroy imports
 - Deploy networks & databricks environment using terraform
+- Databricks CLI tutorial

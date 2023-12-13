@@ -40,7 +40,6 @@ terraform state show azurerm_resource_group.example
 
 ## Next steps
 
-- Import variables in PowerShell scripts
 - Find replacement for the --sdk-auth
 - Finish Terraform tutorial
 - Deploy networks & databricks environment using terraform

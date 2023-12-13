@@ -1,4 +1,5 @@
 # General
+$TENANT_ID='bfb32e4e-6422-4fde-b3a1-922d22d6b094'
 $SUBSCRIPTION_ID=$(az account show --query id --output tsv);
 $LOCATION='switzerlandnorth'
 

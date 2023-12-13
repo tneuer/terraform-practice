@@ -15,3 +15,7 @@ variable "environment" {
     error_message = "Unsupported environement specified. Supported regions include: dev, prod"
   }
 }
+
+variable "project" {
+  type = string
+}

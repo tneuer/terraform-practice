@@ -40,6 +40,6 @@ terraform state show azurerm_resource_group.example
 
 ## Next steps
 
-- Find replacement for the --sdk-auth
 - Finish Terraform tutorial
+- Make diagram
 - Deploy networks & databricks environment using terraform

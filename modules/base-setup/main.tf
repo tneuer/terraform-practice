@@ -97,12 +97,12 @@ resource "azurerm_network_interface" "nic_test" {
 }
 
 resource "azurerm_linux_virtual_machine" "linux_vm_test" {
-  name                = "linuxvmtest"
-  resource_group_name = azurerm_resource_group.base_rg.name
-  location            = azurerm_resource_group.base_rg.location
-  size                = "Standard_B1s"
-  admin_username      = "adminuser"
-  admin_password      = data.azurerm_key_vault_secret.linux_pwd.value
+  name                            = "linuxvmtest"
+  resource_group_name             = azurerm_resource_group.base_rg.name
+  location                        = azurerm_resource_group.base_rg.location
+  size                            = "Standard_B1s"
+  admin_username                  = "adminuser"
+  admin_password                  = data.azurerm_key_vault_secret.linux_pwd.value
   disable_password_authentication = false
   network_interface_ids = [
     azurerm_network_interface.nic_test.id,

@@ -7,7 +7,7 @@ $BUILD_RESOURCE_GROUP_NAME_RESOURCES='terraform-test-resource'
 
 
 # Terraform RG
-$TF_RESOURCE_GROUP_NAME='tf_statefile_rg'
+$TF_RESOURCE_GROUP_NAME='terraform-test-resource'
 $TF_STORAGE_ACCOUNT_NAME='tfstatefiletestthomas'
 $TF_CONTAINER_NAME='tfstatefile'
 $TF_KEYVAULT_NAME='tfstatekv';

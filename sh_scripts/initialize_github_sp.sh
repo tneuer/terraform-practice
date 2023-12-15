@@ -1,4 +1,4 @@
-source ./pwsh_scripts/variables.sh
+source ./sh_scripts/variables.sh
 
 echo Creating service principal $GITHUB_TF_SP_NAME... -ForegroundColor blue
 az ad sp create-for-rbac --name $GITHUB_TF_SP_NAME --role reader --scopes /subscriptions/$SUBSCRIPTION_ID/resourceGroups/$TF_RESOURCE_GROUP_NAME

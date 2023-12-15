@@ -1,4 +1,4 @@
-source ./pwsh_scripts/variables.sh
+source ./sh_scripts/variables.sh
 
 echo Deploying resource group $TF_RESOURCE_GROUP_NAME... -ForegroundColor blue
 az group create --name $TF_RESOURCE_GROUP_NAME --location $LOCATION

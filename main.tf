@@ -18,4 +18,5 @@ module "base-setup" {
   source      = "./modules/base-setup"
   location    = var.location
   environment = var.environment
+  project     = var.project
 }

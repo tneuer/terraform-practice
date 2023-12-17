@@ -5,10 +5,15 @@ on:
     branches: [ "dev" ]
   workflow_dispatch:
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
 
   build-and-deploy:
     runs-on: ubuntu-latest
+
     steps:
     - name: Check out repo        
       uses: actions/checkout@v4
@@ -18,20 +23,29 @@ jobs:
       with:
         terraform_version: '>=1.6.5'
 
-    - name: Azure login
+    - name: 'Azure login'
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_TERRAFORM_CREDENTIALS }}
+          client-id: ${{ secrets.AZURE_CLIENT_ID }}
+          tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+          subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
     - name: Validate login
       run: az account show
       shell: pwsh
+
+    - name: Init & Import
+      run: ./pwsh_scripts/imports_terraform.ps1
+      continue-on-error: true
+      shell: pwsh
     
     - name: Validation step
+      if: always()
       run: ./pwsh_scripts/validate_terraform.ps1
       shell: pwsh
     
     - name: Azure logout
+      if: always()
       run: az logout
       shell: pwsh
 

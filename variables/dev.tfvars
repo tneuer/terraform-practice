@@ -1,2 +1,2 @@
 # Tags
-environment = "prod"
+environment = "dev"
